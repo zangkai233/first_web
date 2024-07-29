@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的 GitHub 页面</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container" id="login-container">
+        <div class="login-box">
+            <h2>登录</h2>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit">登录</button>
+            </form>
+            <div id="login-error" class="error-message"></div>
+        </div>
+    </div>
+
+    <div id="main-content" style="display:none;">
+        <div class="menu">
+            <button id="menu-toggle">菜单</button>
+            <nav id="menu-nav">
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">关于</a></li>
+                    <li><a href="#">服务</a></li>
+                    <li><a href="#">联系</a></li>
+                    <li><a href="#" id="logout">退出登录</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <h1>欢迎来到我的 GitHub 页面</h1>
+        <p>这是一个简单的 HTML 页面，通过 GitHub Pages 部署。</p>
+    </div>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            var nav = document.getElementById('menu-nav');
+            if (nav.style.maxHeight) {
+                nav.style.maxHeight = null;
+            } else {
+                nav.style.maxHeight = nav.scrollHeight + "px";
+            }
+        });
+
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            if (username === 'zhaoyuzhu' && password === '20070223') {
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            } else {
+                document.getElementById('login-error').innerText = '用户名或密码错误';
+            }
+        });
+
+        document.getElementById('logout').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('login-container').style.display = 'flex';
+        });
+    </script>
+</body>
+</html>
